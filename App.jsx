@@ -1,17 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native';
-import * as Font from 'expo-font';
-import { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
-
-
-const loadFonts = async () => {
-  await Font.loadAsync({
-    'nombre-de-la-fuente': require('./assets/fonts/Urbanist-VariableFont_wght.ttf'),
-  });
-};
+import { useFonts } from 'expo-font';
 
 // Componentes de las pantallas de las pestañas
 const HomeScreen = () => (
@@ -44,9 +35,12 @@ const ServicesScreen = () => (
 const Tab = createBottomTabNavigator();
 
 const App = () => {
-  useEffect(() => {
-    loadFonts();
-  }, []);
+  const [fontsLoaded] = useFonts({
+    Urbanist: require('./assets/fonts/Urbanist-VariableFont_wght.ttf')
+  })
+
+  if (!fontsLoaded)return null;
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -60,7 +54,7 @@ const App = () => {
             headerStyle: { backgroundColor: "black" },
             headerTintColor: 'white',
             headerTitleStyle: { fontSize: 20 },
-            tabBarLabelStyle: { fontSize: 16, color: 'white', fontWeight: 300, textTransform: 'uppercase',fontFamily: 'nombre-de-la-fuente', letterSpacing: 1}
+            tabBarLabelStyle: { fontSize: 16, color: 'white', fontWeight: 300, textTransform: 'uppercase',fontFamily: 'Urbanist', letterSpacing: 1}
           }}>
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Artists" component={ArtistsScreen} />
@@ -87,7 +81,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 24,
     fontWeight: '300',
-    fontFamily: 'nombre-de-la-fuente'
+    fontFamily: 'Urbanist'
   },
   navigationText: {
     color: 'gray',
