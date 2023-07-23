@@ -1,41 +1,42 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native';
+import { StyleSheet, View, ImageBackground } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { BottomTab } from './navigation/BotomTab';
-
-// Componentes de las pantallas de las pestañas
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const App = () => {
   const [fontsLoaded] = useFonts({
     Urbanist: require('./assets/fonts/Urbanist-VariableFont_wght.ttf')
-  })
+  });
 
-  if (!fontsLoaded)return null;
+  if (!fontsLoaded) return null;
 
   return (
-    <NavigationContainer>
-      <BottomTab/>
-    </NavigationContainer>
+    <SafeAreaProvider>
+
+      <View style={styles.container}>
+        <ImageBackground
+          source={require('./assets/background.jpg')}
+          style={styles.backgroundImage}
+          resizeMode='cover'
+        >
+          <NavigationContainer>
+            <BottomTab />
+          </NavigationContainer>
+        </ImageBackground>
+      </View>
+    </SafeAreaProvider>
+
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  text: {
-    color: 'black',
-    fontSize: 24,
-    fontWeight: '300',
-    fontFamily: 'Urbanist'
-  },
-  navigationText: {
-    color: 'gray',
-    fontSize: 16,
-
+  backgroundImage: {
+    flex: 1,
   },
 });
 

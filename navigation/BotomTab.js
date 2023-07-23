@@ -15,22 +15,21 @@ export const BottomTab = () => {
             screenOptions={({ route }) => ({
                 tabBarStyle: {
                     backgroundColor: 'rgba(0, 0, 0, 0.43)', // Fondo transparente
-                    position: 'absolute', // Posición absoluta para superponerlo en la pantalla
                     elevation: 0, // Elimina la sombra en Android
-                    borderTopWidth: 0, height: 100, paddingBottom: 10, paddingTop: 10
+                    borderTopWidth: 0, height: 140, paddingBottom: 60, paddingTop: 10
                 },
                 headerShown: false,
                 headerTitleStyle: { fontSize: 20 },
                 tabBarLabelStyle: {
                     fontSize: 16,
-                    color: '#58D8E5',
+                    color: '#C4C4C4',
                     fontWeight: '600',
                     textTransform: 'uppercase',
                     fontFamily: 'Urbanist',
                     letterSpacing: 1,
                 },
                 tabBarActiveTintColor: 'white',
-                tabBarInactiveTintColor: '#58D8E5',
+                tabBarInactiveTintColor: '#C4C4C4',
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
 
