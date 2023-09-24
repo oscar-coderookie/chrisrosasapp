@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { BottomTab } from './navigation/BotomTab';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import backGround from './assets/images/background.jpg'
 
 const App = () => {
   const [fontsLoaded] = useFonts({
@@ -17,7 +18,7 @@ const App = () => {
 
       <View style={styles.container}>
         <ImageBackground
-          source={require('./assets/background.jpg')}
+          source={backGround}
           style={styles.backgroundImage}
           resizeMode='cover'
         >

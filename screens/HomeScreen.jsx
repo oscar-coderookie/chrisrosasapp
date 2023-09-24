@@ -1,43 +1,23 @@
 import React, { useRef, useEffect } from 'react';
-import { StyleSheet, Text, View, ImageBackground, Image, Animated } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native';
+import backImg from '../assets/images/background.jpg';
+import logoWhite from '../assets/logo-white.png';
 
 const HomeScreen = () => {
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    const startAnimation = () => {
-      Animated.loop(
-        Animated.sequence([
-          Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: 2500,
-            useNativeDriver: true,
-          }),
-          Animated.timing(fadeAnim, {
-            toValue: 0,
-            duration: 2500,
-            useNativeDriver: true,
-          }),
-        ]),
-      ).start();
-    };
-
-    startAnimation();
-  }, [fadeAnim]);
-
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../assets/background.jpg')}
+        source={backImg}
         style={styles.backgroundImage}
         resizeMode='cover'
       >
-        <Animated.View style={[styles.logoContainer, { opacity: fadeAnim, shadowColor: 'white', shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.5, shadowRadius: 5 }]}>
-          <ImageBackground
-            source={require('../assets/logo-white.png')}
+        {/* Agrega un contenedor para el logo con los estilos adecuados */}
+        <View style={styles.logoContainer}>
+          <Image
+            source={logoWhite}
             style={styles.logo}
           />
-        </Animated.View>
+        </View>
       </ImageBackground>
     </View>
   );
@@ -48,22 +28,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   logoContainer: {
+    flex: 1, // Asegura que el contenedor del logo ocupe todo el espacio disponible
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: 'white',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.8,
-    shadowRadius: 5,
-    elevation: 5,
   },
   logo: {
     width: 300,
+    height: 300,
     resizeMode: 'contain',
   },
   backgroundImage: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // Elimina alignItems y justifyContent aquí para que el fondo no se centre,
+    // en su lugar, el contenedor del logo se centrará dentro del fondo.
   },
 });
 
